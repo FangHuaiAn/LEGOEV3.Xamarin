@@ -1,4 +1,7 @@
-# LEGOEV3.Xamarin
+# LEGOEV3.Xamarin # 
 
-##1. Create the Xamarin project with Visual Studio with Mac
-##2. Add iOS support
+## Create the Xamarin project with Visual Studio with Mac ## 
+   > Use Xamarin.iOS and Xamarin.Android
+   > I'll try to use Xamarin.Forms next step
+## Add iOS support ## 
+   > The origin samples hava Android project. I add iOS project.
