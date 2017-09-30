@@ -127,6 +127,7 @@
     <Compile Include="Lego.Ev3.Core\ResponseManager.cs" />
     <Compile Include="Lego.Ev3.Core\SystemCommand.cs" />
     <Compile Include="BluetoothWorker.cs" />
+    <Compile Include="BluetoothCommunication.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
