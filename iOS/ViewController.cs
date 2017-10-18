@@ -1,9 +1,12 @@
 ﻿using System;
 
 using UIKit;
-using CoreBluetooth;
+using Foundation;
+using ExternalAccessory;
 
 using Lego.Ev3.Core;
+
+using static System.Diagnostics.Debug;
 
 
 namespace EV3Controller.iOS
@@ -18,28 +21,23 @@ namespace EV3Controller.iOS
         {
             base.ViewDidLoad();
 
-            CBCentralManager manager = new CBCentralManager();
-            CBPeripheral peripheral =
-            //manager.ConnectPeripheral(new CBPeripheral())
+            NSNotificationCenter.DefaultCenter.AddObserver(new NSString("EAAccessoryDidConnect"),(NSNotification obj) =>{
+                WriteLine("EAAccessoryDidConnect");
+            }) ;
 
-			//var communication = new BluetoothCommunication(@"PPAP09");
-			//var brick = new Brick(communication);
-			//var command = new DirectCommand(brick);
-
-			//brick.ConnectAsync();
-
-			communication.ReportReceived += async (object sender, ReportReceivedEventArgs e) => {
+			NSNotificationCenter.DefaultCenter.AddObserver(new NSString("EAAccessoryDidDisconnect"), (NSNotification obj) => {
+				WriteLine("EAAccessoryDidDisconnect");
+			});
 
 
-				await command.TurnMotorAtSpeedAsync(OutputPort.B, 50);
-				await command.StartMotorAsync(OutputPort.B);
-
-				await Task.Delay(2000);
+			EAAccessoryManager.SharedAccessoryManager.ShowBluetoothAccessoryPicker(null, (obj) => {
+                WriteLine( obj.LocalizedDescription);
+            });
 
 
 
 
-			};
+
 
             btnForward.TouchUpInside += (sender, e) => {
                 

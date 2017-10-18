@@ -11,18 +11,23 @@ namespace EV3Controller.iOS
 {
     public class BluetoothCommunication : ICommunication
     {
-        private CBCentralManager CentralBleManager { get; set; }
+        private CBCentralManager CentralBTManager { get; set; }
         CBPeripheral peripheral;
 
         public BluetoothCommunication()
         {
+            CentralBTManager = new CBCentralManager();
         }
 
         public event EventHandler<ReportReceivedEventArgs> ReportReceived;
 
-        public Task ConnectAsync()
+        public async Task ConnectAsync()
         {
-            throw new NotImplementedException();
+            CentralBTManager.ScanForPeripherals(peripheralUuids: null);
+
+            await Task.Delay( 3000);
+
+            CentralBTManager.StopScan();
         }
 
         public void Disconnect()
